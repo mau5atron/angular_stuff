@@ -10,7 +10,10 @@
 	<span>id: </span>{{hero.id}}
 	<ul class="heroes">
 		<!-- *ngFor is Angular's repeater directive. It repeats the host element for each element in a list -->
-		<li *ngFor="let hero of heroes"> <!-- li is the host element -->
+				<!-- (click)="onSelect(hero)" - Angular event binding syntax - li element listens for click event -->
+		<li *ngFor="let hero of heroes" (click)="onSelect(hero)"> <!-- li is the host element -->
+				<!-- onSelect is a hero component method that (still needs to be written) - call it with the hero object -->
+
 			<span class="badge">{{hero.id}}</span> {{hero.name}}
 		</li>
 	</ul>
