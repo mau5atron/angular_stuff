@@ -10,7 +10,7 @@ import { HeroesComponent } from './heroes/heroes.component';
 @NgModule({
   declarations: [
     AppComponent,
-    HeroesComponent
+    HeroesComponent // added to NgModule when hero component was generated
   ],
   imports: [
     BrowserModule,
