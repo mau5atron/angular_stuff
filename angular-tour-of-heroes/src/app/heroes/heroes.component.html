@@ -2,6 +2,12 @@
   {{hero.name | uppercase}} Details
   						<!-- uppercase pipe - formats data/ currency etc in interpolation binding-->
 </h2>
-<div><span>id: </span>{{hero.id}}</div>
-<div><span>name: </span>{{hero.name}}</div>
+<div>
+	<label>
+		<input [(ngModel)]="hero.name" placeholder="name">
+	</label>
+
+	<span>id: </span>{{hero.id}}
+</div>
+
 	
