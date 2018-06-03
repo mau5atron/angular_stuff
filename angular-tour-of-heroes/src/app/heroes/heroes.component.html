@@ -1,3 +1,4 @@
+<h2>My Heroes</h2>
 <h2>
   {{hero.name | uppercase}} Details
   						<!-- uppercase pipe - formats data/ currency etc in interpolation binding-->
@@ -6,8 +7,13 @@
 	<label>
 		<input [(ngModel)]="hero.name" placeholder="name">
 	</label>
-
 	<span>id: </span>{{hero.id}}
+	<ul class="heroes">
+		<!-- *ngFor is Angular's repeater directive. It repeats the host element for each element in a list -->
+		<li *ngFor="let hero of heroes"> <!-- li is the host element -->
+			<span class="badge">{{hero.id}}</span> {{hero.name}}
+		</li>
+	</ul>
 </div>
 
 	
