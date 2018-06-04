@@ -5,12 +5,14 @@ import { FormsModule } from '@angular/forms'; // NgModel lives in the forms modu
 import { AppComponent } from './app.component';
 
 // When the heroes component was generated, it was automatically added to the app module 
-import { HeroesComponent } from './heroes/heroes.component'; 
+import { HeroesComponent } from './heroes/heroes.component';
+import { HeroDetailComponent } from './hero-detail/hero-detail.component'; 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeroesComponent // added to NgModule when hero component was generated
+    HeroesComponent,
+    HeroDetailComponent // added to NgModule when hero component was generated
   ],
   imports: [
     BrowserModule,
