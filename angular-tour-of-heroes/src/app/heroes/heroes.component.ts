@@ -8,20 +8,21 @@ import { HEROES } from '../mock-heroes';
   styleUrls: ['./heroes.component.css']
 })
 export class HeroesComponent implements OnInit {
-	hero: Hero = {
-		id: 1,
-		name: "Windstorm"
-	};
+	// keep this bc it initializes the hero object, which consists name and id
+	// hero: Hero = {
+	// 	id: 1,
+	// 	name: "Windstorm"
+	// };
 	heroes = HEROES;
 
 	selectedHero: Hero;
 
-	onSelect(hero: Hero): void {
-		this.selectedHero = hero;
-	}
+	
   constructor() { }
 
   ngOnInit() {
   }
-
+	onSelect(hero: Hero): void {
+		this.selectedHero = hero;
+	}
 }
