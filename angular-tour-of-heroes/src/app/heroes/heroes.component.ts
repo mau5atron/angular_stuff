@@ -26,11 +26,13 @@ export class HeroesComponent implements OnInit {
 	}
 	
   constructor(private heroService: HeroService){ 
-  // in contructor hero service property is defined and identifies hero service injection site
+  // contsructor parameter hero service property is defined and identifies hero service injection site
 
   }
 
   ngOnInit() {
+  	this.getHeroes();
+  	// calls function after constructing a HeroesComponent instance 
   }
 	onSelect(hero: Hero): void {
 		this.selectedHero = hero;
