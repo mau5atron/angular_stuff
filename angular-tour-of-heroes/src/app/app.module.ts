@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 
 // When the heroes component was generated, it was automatically added to the app module 
 import { HeroesComponent } from './heroes/heroes.component';
-import { HeroDetailComponent } from './hero-detail/hero-detail.component'; 
+import { HeroDetailComponent } from './hero-detail/hero-detail.component';
+import { MessagesComponent } from './messages/messages.component'; 
 
 @NgModule({
   declarations: [
     AppComponent,
     HeroesComponent,
-    HeroDetailComponent // added to NgModule when hero component was generated
+    HeroDetailComponent,
+    MessagesComponent // added to NgModule when hero component was generated
   ],
   imports: [
     BrowserModule,
