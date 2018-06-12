@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Hero } from './hero';
 import { HEROES } from './mock-heroes';
 import { Observable, of } from 'rxjs';
+import { MessageService } from './message.service';
 
 
 @Injectable({
@@ -12,5 +13,6 @@ export class HeroService {
 		return of(HEROES);
 		// returns mock heroes
 	}
-  constructor() { }
+  constructor(private messageService: MessageService) { }
+  // injected MessageService into HeroService in order to inject into the HeroesComponent
 }
