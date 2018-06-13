@@ -16,19 +16,17 @@ export class HeroesComponent implements OnInit {
 	// 	name: "Windstorm"
 	// };
 	// heroes = HEROES;
-	heroes: Hero[];
+	
 
 	selectedHero: Hero;
+	heroes: Hero[];
 
-	getHeroes(): void {
-		this.heroService.getHeroes().subscribe(heroes => this.heroes = heroes)
-		// getHeroes function retrieves heroes from the service
-	}
 	
-  constructor(private heroService: HeroService){ 
+	
+  constructor(private heroService: HeroService){}
   // contsructor parameter hero service property is defined and identifies hero service injection site
 
-  }
+  
 
   ngOnInit() {
   	this.getHeroes();
@@ -36,5 +34,10 @@ export class HeroesComponent implements OnInit {
   }
 	onSelect(hero: Hero): void {
 		this.selectedHero = hero;
+	}
+
+	getHeroes(): void {
+		this.heroService.getHeroes().subscribe(heroes => this.heroes = heroes)
+		// getHeroes function retrieves heroes from the service
 	}
 }

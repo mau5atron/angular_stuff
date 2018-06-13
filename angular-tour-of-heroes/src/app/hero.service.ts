@@ -9,12 +9,17 @@ import { MessageService } from './message.service';
   providedIn: 'root'
 })
 export class HeroService {
-	getHeroes(): Observable<Hero[]>{
-		// todo: send the message _after_ fetching the heroes
-		this.messageService.add('HeroService: fetched heroes');
-		return of(HEROES);
-		// returns mock heroes
-	}
-  constructor(public messageService: MessageService) { }
+	
+  constructor(private messageService: MessageService) { }
   // injected MessageService into HeroService in order to inject into the HeroesComponent
+  
+	getHeroes(): Observable<Hero[]>{
+			// todo: send the message _after_ fetching the heroes
+			this.messageService.add('HeroService: fetched heroes');
+			return of(HEROES);
+			// returns mock heroes
+	}
+
+
+
 }

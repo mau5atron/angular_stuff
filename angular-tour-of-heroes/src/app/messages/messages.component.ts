@@ -7,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MessagesComponent implements OnInit {
 
-  constructor() { }
+  constructor(public messageService: MessageService) { }
+  // constructor parameter is set to public in order to bind with it in the template
 
   ngOnInit() {
   }
