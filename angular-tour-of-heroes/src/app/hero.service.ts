@@ -15,6 +15,6 @@ export class HeroService {
 		return of(HEROES);
 		// returns mock heroes
 	}
-  constructor(private messageService: MessageService) { }
+  constructor(public messageService: MessageService) { }
   // injected MessageService into HeroService in order to inject into the HeroesComponent
 }
