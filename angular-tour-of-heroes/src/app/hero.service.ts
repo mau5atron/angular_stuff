@@ -10,6 +10,8 @@ import { MessageService } from './message.service';
 })
 export class HeroService {
 	getHeroes(): Observable<Hero[]>{
+		// todo: send the message _after_ fetching the heroes
+		this.messageService.add('HeroService: fetched heroes');
 		return of(HEROES);
 		// returns mock heroes
 	}
