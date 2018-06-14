@@ -17,16 +17,11 @@ export class HeroesComponent implements OnInit {
 	// };
 	// heroes = HEROES;
 	
-
 	selectedHero: Hero;
 	heroes: Hero[];
 
-	
-	
   constructor(private heroService: HeroService){}
   // contsructor parameter hero service property is defined and identifies hero service injection site
-
-  
 
   ngOnInit() {
   	this.getHeroes();
