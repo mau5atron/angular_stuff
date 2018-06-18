@@ -17,7 +17,7 @@ export class HeroesComponent implements OnInit {
 	// };
 	// heroes = HEROES;
 	
-	selectedHero: Hero;
+	// selectedHero: Hero;
 	heroes: Hero[];
 
   constructor(private heroService: HeroService){}
