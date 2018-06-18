@@ -27,10 +27,7 @@ export class HeroesComponent implements OnInit {
   	this.getHeroes();
   	// calls function after constructing a HeroesComponent instance 
   }
-	onSelect(hero: Hero): void {
-		this.selectedHero = hero;
-	}
-
+  
 	getHeroes(): void {
 		this.heroService.getHeroes().subscribe(heroes => this.heroes = heroes);
 		// getHeroes function retrieves heroes from the service
