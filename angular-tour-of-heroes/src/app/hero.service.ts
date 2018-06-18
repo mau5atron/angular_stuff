@@ -19,4 +19,8 @@ export class HeroService {
 			return of(HEROES);
 			// returns mock heroes
 	}
+
+	getHero(id: number): Observable<Hero> {
+		this.message.add(`HeroService: fetched hero id=${id}`);
+	}
 }
