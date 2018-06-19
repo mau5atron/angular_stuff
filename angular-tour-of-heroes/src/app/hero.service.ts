@@ -21,6 +21,6 @@ export class HeroService {
 	}
 
 	getHero(id: number): Observable<Hero> {
-		this.message.add(`HeroService: fetched hero id=${id}`);
+		this.messageService.add(`HeroService: fetched hero id=${id}`);
 	}
 }
