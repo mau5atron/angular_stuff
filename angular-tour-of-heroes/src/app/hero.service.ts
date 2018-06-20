@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Hero } from './hero';
-import { HEROES } from './mock-heroes';
 import { Observable, of } from 'rxjs';
 import { MessageService } from './message.service';
 
@@ -21,12 +20,19 @@ export class HeroService {
 	getHeroes(): Observable<Hero[]>{
 			// todo: send the message _after_ fetching the heroes
 			this.messageService.add('HeroService: fetched heroes');
-			return of(HEROES);
-			// returns mock heroes
+
+			return this.http.get<Hero[]>(this.heroesUrl);
+			// no longer returns mock heroes - heroes a retrieved from a server 
 	}
 
 	getHero(id: number): Observable<Hero> {
 		this.messageService .add(`HeroService: fetched hero id=${id}`);
 		return of(HEROES.find(hero => hero.id === id));
 	}
+
+	private log(message: string){
+		this.messageService.add('HeroService: ' + message);
+	}
+
+	private heroesURL = 'api/heroes'; // URL to web api
 }
