@@ -12,7 +12,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
 })
 export class HeroService {
 	
-  constructor(private messageService: MessageService) { }
+  constructor(
+  	private http: HttpClient, 
+  	private messageService: MessageService
+  ) { }
   // injected MessageService into HeroService in order to inject into the HeroesComponent
 
 	getHeroes(): Observable<Hero[]>{
