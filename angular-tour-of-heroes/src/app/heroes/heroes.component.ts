@@ -37,8 +37,11 @@ export class HeroesComponent implements OnInit {
 		name = name.trim();
 
 		if (!name) { return; }
+		// when the name is not blank
 		this.heroService.addHero({ name } as Hero).subscribe(hero => {
+			// handler creates a hero-like object from the name(still missing id)
 			this.heroes.push(hero);
+			// then passes it to the services addHero()
 		});
 	}
 }
