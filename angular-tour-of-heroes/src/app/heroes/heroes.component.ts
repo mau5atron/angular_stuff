@@ -10,14 +10,6 @@ import { HeroService } from '../hero.service';
   styleUrls: ['./heroes.component.css']
 })
 export class HeroesComponent implements OnInit {
-	// keep this bc it initializes the hero object, which consists name and id
-	// hero: Hero = {
-	// 	id: 1,
-	// 	name: "Windstorm"
-	// };
-	// heroes = HEROES;
-	
-	// selectedHero: Hero;
 	heroes: Hero[];
 
   constructor(private heroService: HeroService){}
