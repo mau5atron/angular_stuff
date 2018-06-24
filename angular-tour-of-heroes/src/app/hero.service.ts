@@ -58,6 +58,7 @@ export class HeroService {
 		);
 	}
 
+	// retrieve the hero names that contain the search term
 	searchHeroes(term: string): Observable<Hero[]> {
 		if (!term.trim()) {
 			// if the term is not available, return an empty array
@@ -68,7 +69,7 @@ export class HeroService {
 			catchError(this.handleError<Hero[]>('searchHeroes', []))
 		);
 	}
-	
+
 	private log(message: string){
 		this.messageService.add('HeroService: ' + message);
 	}
