@@ -4,6 +4,8 @@
 
 	<ul class="search-result">
 		<li *ngFor="let hero of heroes$ | async" >
+			<!-- ngFor iterates over list called heroes$, not the regular heroes -->
+			<!-- heroes$ is an observable / async pipe picks it up and subscribes it to an observable autotically -->
 			<a routerLink="/detail/{{hero.id}}">
 				{{hero.name}}
 			</a>
