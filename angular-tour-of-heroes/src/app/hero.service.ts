@@ -6,18 +6,28 @@ import { MessageService } from './message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 
+const httpOptions = {
+	headers: new HttpHeaders({
+		'Content-Type': 'application/json'
+	})
+};
 
 @Injectable({
   providedIn: 'root'
 })
 export class HeroService {
 	
+	// provides url to web api
+	private heroesUrl = 'api/heroes';
+
+
   constructor(
   	private http: HttpClient, 
   	private messageService: MessageService
   ) { }
-  // injected MessageService into HeroService in order to inject into the HeroesComponent
 
+  // injected MessageService into HeroService in order to inject into the HeroesComponent
+  // retrieves heroes from the server 
 	getHeroes(): Observable<Hero[]>{
 			// todo: send the message _after_ fetching the heroes
 			this.messageService.add('HeroService: fetched heroes');
@@ -29,6 +39,23 @@ export class HeroService {
 			// no longer returns mock heroes - heroes a retrieved from a server 
 	}
 
+	// get hero by id - returns 'undefined' when id not found 
+	getHeroNo404<Data>(id: number): Observable<Hero> {
+		const url = `${this.heroesUrl}/?id=${id}`;
+		
+		return this.http.get<Hero[]>(url).pipe(
+			// returns a {0|1} element array 
+			map(heroes => heroes[0]),
+
+			tap(h => {
+				const outcome = h ? `fetched` : `did not find`;
+				this.log(`${outcome} hero id=${id}`);
+			}),
+
+			catchError(this.handleError<Hero>(`getHero id=${id}`))
+		);
+	}
+
 	// Requests hero by id - 404 if not found
 	getHero(id: number): Observable<Hero> {
 		const url = `${this.heroesUrl}/${id}`;
@@ -38,6 +65,21 @@ export class HeroService {
 			catchError(this.handleError<Hero>(`getHero id=${id}`))
 		)
 	}
+
+	// retrieve the hero names that contain the search term
+	searchHeroes(term: string): Observable<Hero[]> {
+		if (!term.trim()) {
+			// if the term is not available, return an empty array
+			return of([]);
+		}
+		return this.http.get<Hero[]>(`${this.heroesUrl}/?name=${term}`).pipe(
+			tap(_ => this.log(`found heroes matching "${term}"`)),
+			catchError(this.handleError<Hero[]>('searchHeroes', []))
+		);
+	}
+
+
+	// All save methods //
 
 	// HeroService.addHero differs from updateHero bc it calls HttpClient.post() instead of put()
 	// expects the server to generate an id for the new hero, which it returns in the Observable<Hero> to the caller
@@ -58,25 +100,12 @@ export class HeroService {
 		);
 	}
 
-	// retrieve the hero names that contain the search term
-	searchHeroes(term: string): Observable<Hero[]> {
-		if (!term.trim()) {
-			// if the term is not available, return an empty array
-			return of([]);
-		}
-		return this.http.get<Hero[]>(`${this.heroesUrl}/?name=${term}`).pipe(
-			tap(_ => this.log(`found heroes matching "${term}"`)),
-			catchError(this.handleError<Hero[]>('searchHeroes', []))
+	updateHero (hero: Hero): Observable<any> {
+		return this.http.put(this.heroesUrl, hero, httpOptions).pipe(
+			tap(_ => this.log(`updated hero id=${hero.id}`)),
+			catchError(this.handleError<any>('updateHero'))
 		);
 	}
-
-	private log(message: string){
-		this.messageService.add('HeroService: ' + message);
-	}
-
-	private heroesURL = 'api/heroes'; // URL to web api
-
-
 
 	/** 
 		The private method below: 
@@ -98,6 +127,8 @@ export class HeroService {
 			return of(result as T);
 		};
 	}
-
-
+	
+	private log(message: string){
+		this.messageService.add('HeroService: ' + message);
+	}
 }
