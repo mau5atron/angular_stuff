@@ -12,28 +12,29 @@ import { HeroService } from '../hero.service';
 export class HeroesComponent implements OnInit {
 	heroes: Hero[];
 
+  // contsructor parameter hero service property is defined and identifies hero service injection site	
   constructor(private heroService: HeroService){}
-  // contsructor parameter hero service property is defined and identifies hero service injection site
 
   ngOnInit() {
-  	this.getHeroes();
   	// calls function after constructing a HeroesComponent instance 
+  	this.getHeroes();
   }
   
 	getHeroes(): void {
-		this.heroService.getHeroes().subscribe(heroes => this.heroes = heroes);
 		// getHeroes function retrieves heroes from the service
+		this.heroService.getHeroes().subscribe(heroes => this.heroes = heroes);
 	}
 
 	add(name: string): void {
 		name = name.trim();
 
-		if (!name) { return; }
 		// when the name is not blank
-		this.heroService.addHero({ name } as Hero).subscribe(hero => {
+		if (!name) { return; }
+		
 			// handler creates a hero-like object from the name(still missing id)
-			this.heroes.push(hero);
+		this.heroService.addHero({ name } as Hero).subscribe(hero => {
 			// then passes it to the services addHero()
+			this.heroes.push(hero);
 		});
 	}
 
