@@ -5,10 +5,6 @@ import { Location } from '@angular/common';
 import { Hero } from '../hero'; 
 import { HeroService } from '../hero.service';
 
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
-
 @Component({
   selector: 'app-hero-detail',
   templateUrl: './hero-detail.component.html',
@@ -40,13 +36,4 @@ export class HeroDetailComponent implements OnInit {
   save(): void {
     this.heroService.updateHero(this.hero).subscribe(() => this.goBack());
   }
-
-  // Updates the hero on the server 
-  updateHero (hero: Hero): Observable<any>{
-    return this.http.put(this.heroesUrl, hero, httpOptions).pipe(
-      tap(_ => this.log(`updated hero id=${hero.id}`)),
-      catchError(this.handleError<any>('updatedHero'))
-    );
-  }
-
 }
